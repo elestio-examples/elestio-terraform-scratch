@@ -4,19 +4,19 @@ Rename `secret.tfvars.example` to `secret.tfvars` and fill the values with yours
 
 #### Apply the Terraform configuration
 
-1. **Download and install the Elestio provider defined in the configuration :**
+1. Download and install the Elestio provider defined in the configuration :
 
    ```bash
    terraform init
    ```
 
-2. **Ensure the configuration is syntactically valid and internally consistent:**
+2. Ensure the configuration is syntactically valid and internally consistent:
 
    ```bash
    terraform validate
    ```
 
-3. **Apply the configuration :**
+3. Apply the configuration :
 
    ```bash
    terraform apply -var-file="secret.tfvars"
@@ -24,7 +24,7 @@ Rename `secret.tfvars.example` to `secret.tfvars` and fill the values with yours
 
    Deployment time varies by service, provider, datacenter and server type.
 
-4. **Voila, you have created a Project and PostgreSQL Service using Terraform !**
+4. Voila, you have created a Project and PostgreSQL Service using Terraform !
 
    You can visit the [Elestio web dashboard](https://dash.elest.io/) to see these ressources.
 
