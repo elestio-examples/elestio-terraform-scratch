@@ -1,6 +1,6 @@
 # Elestio Terraform From-Scratch Example
 
-Rename `secret.tfvars.example` to `secret.tfvars` and fill the values with yours.
+Rename `secrets.tfvars.example` to `secrets.tfvars` and fill the values with yours.
 
 #### Apply the Terraform configuration
 
@@ -19,7 +19,7 @@ Rename `secret.tfvars.example` to `secret.tfvars` and fill the values with yours
 3. Apply the configuration :
 
    ```bash
-   terraform apply -var-file="secret.tfvars"
+   terraform apply -var-file="secrets.tfvars"
    ```
 
    Deployment time varies by service, provider, datacenter and server type.
@@ -27,6 +27,28 @@ Rename `secret.tfvars.example` to `secret.tfvars` and fill the values with yours
 4. Voila, you have created a Project and PostgreSQL Service using Terraform !
 
    You can visit the [Elestio web dashboard](https://dash.elest.io/) to see these ressources.
+
+#### Update the configuration
+
+1. Change the `firewall_enabled` value to false in `main.tf` and run the following command :
+
+   ```bash
+   terraform apply -var-file="secrets.tfvars"
+   ```
+
+   This will update the configuration and destroy the firewall.
+
+2. Revert the change in `main.tf` and run the following command :
+
+   ```bash
+   terraform apply -var-file="secrets.tfvars"
+   ```
+
+   This will update the configuration and create the firewall again.
+
+Some changes (ex: `datacenter`) require the creation of new resources and the destruction of old resources.
+Terraform will show you the resources to be created and destroyed before prompting you to confirm.
+You can loose data if you destroy a resource, so be careful.
 
 #### (Optional) Access to the database
 
@@ -47,7 +69,7 @@ eval "$(terraform output -raw pg_service_psql_command)"
 Run the following command to destroy all the resources you created:
 
 ```bash
-terraform destroy -var-file="secret.tfvars"
+terraform destroy -var-file="secrets.tfvars"
 ```
 
 This command destroys all the resources specified in your Terraform state. `terraform destroy` doesn't destroy resources running elsewhere that aren't managed by the current Terraform project.
